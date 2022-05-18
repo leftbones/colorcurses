@@ -9,10 +9,10 @@ I got fed up with how janky the highlighting system in curses was, so I wrote th
 
 ## Installation
 
-Install using pip, like you would any other package.
+Install using pip, like you would any other package. This is only verified to work with Python 3.
 
 ``````
-pip3 install colorcurses
+pip install colorcurses
 ``````
 
 ## Usage
@@ -25,14 +25,14 @@ import colorcurses
 
 def main(stdscr):
     stdscr.clear()
-    cc = colorcurses.Colorizer(stdscr)
+    cc = colorcurses.Colorizer(stdscr) # create a new Colorizer instance
 
-    cc.add_color("yellow", 255, 0, 0)
+    cc.add_color("yellow", 255, 0, 0) # add new named colors by rgb values
     cc.add_color("blue", 0, 0, 255)
 
-    cc.add_pair("yellow on blue", "yellow", "blue")
+    cc.add_pair("yellow on blue", "yellow", "blue") # create a foreground/background color pair
 
-    cc.addstr(0, 0, "Coloring text in curses is no longer painful!", "yellow on blue")
+    cc.addstr(0, 0, "Coloring text in curses is no longer painful!", "yellow on blue") # call the standard curses print functions through the Colorizer instead of curses
 
     stdscr.getch()
 
@@ -45,6 +45,7 @@ if __name__ == '__main__':
 
 There are a few more things not covered in the example, I'll explain those here.
 
+* Though you are required to pass in a curses window when initializing the Colorizer, you can print to any curses window you want by passing it in to the printing functions, such as `cc.addstr(0, 0, "Colors!", window)`, if a window isn't passed in, the functions automatically fall back to whatever window you passed in when setting up the Colorizer.
 * Once added, colors and color pairs can be updated via the `update_color()` and `update_pair()` functions. These also allow updating only specific values. For example, if you call `update_color("myColor", r=255)`, only the `r` value of `myColor` will be changed. The same goes for changing only the foreground or background color of a pair using `update_pair()`.
 * Colors and color pairs can also be deleted using `delete_color()` and `delete_pair()`, though I don't really think this will ever be useful to anyone. I mostly implemented it just in case someone *does* find a use for it. Colors and color pairs are stored in a dictionary, so deleting them leaves an empty space in the dictionary, which can't ever be filled in again, at least for now.
 * The default colors present in curses are still available in the Colorizer, they are under their original names, only prefixed with `c`, such as `cRed`. I did this so you can reuse the names for your own colors without overwriting the defaults.

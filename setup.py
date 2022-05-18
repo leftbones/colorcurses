@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='colorcurses',
-    version='1.0',
+    version='0.1',
     license='GPL',
     author='Evan J Parker',
     packages=find_packages('src'),

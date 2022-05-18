@@ -1,0 +1,9 @@
+LICENSE.md
+README.md
+setup.cfg
+setup.py
+src/colorcurses.egg-info/PKG-INFO
+src/colorcurses.egg-info/SOURCES.txt
+src/colorcurses.egg-info/dependency_links.txt
+src/colorcurses.egg-info/requires.txt
+src/colorcurses.egg-info/top_level.txt
